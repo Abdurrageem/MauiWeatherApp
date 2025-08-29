@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiWeatherApp.MainPage"
+             Title="Weather App">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Header -->
+            <Label Text="Weather App" 
+                   FontSize="32" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" 
+                   TextColor="#2E3A59" />
+
+            <!-- Location Section -->
+            <Frame BackgroundColor="#F0F0F0" CornerRadius="10" Padding="15">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Location" FontSize="18" FontAttributes="Bold" TextColor="#2E3A59" />
+                    <Button x:Name="GetLocationBtn" 
+                            Text="Get Current Location" 
+                            Clicked="OnGetLocationClicked"
+                            BackgroundColor="#4A90E2" 
+                            TextColor="White" />
+
+                    <HorizontalStackLayout Spacing="10">
+                        <Entry x:Name="CityEntry" 
+                               Placeholder="Enter city name..." 
+                               HorizontalOptions="FillAndExpand" />
+                        <Button x:Name="SearchCityBtn" 
+                                Text="Search" 
+                                Clicked="OnSearchCityClicked"
+                                BackgroundColor="#5CB85C" 
+                                TextColor="White" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Weather Information -->
+            <Frame x:Name="WeatherFrame" 
+                   BackgroundColor="#E8F4FD" 
+                   CornerRadius="15" 
+                   Padding="20"
+                   IsVisible="False">
+                <VerticalStackLayout Spacing="15">
+
+                    <!-- City and Country -->
+                    <Label x:Name="CityLabel" 
+                           FontSize="24" 
+                           FontAttributes="Bold" 
+                           HorizontalOptions="Center"
+                           TextColor="#2E3A59" />
+
+                    <!-- Weather Icon and Description -->
+                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="15">
+                        <Image x:Name="WeatherIcon" 
+                               WidthRequest="80" 
+                               HeightRequest="80" />
+                        <VerticalStackLayout>
+                            <Label x:Name="WeatherDescription" 
+                                   FontSize="18" 
+                                   FontAttributes="Bold"
+                                   TextColor="#2E3A59" />
+                            <Label x:Name="WeatherMain" 
+                                   FontSize="16"
+                                   TextColor="#666" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+
+                    <!-- Temperature -->
+                    <Label x:Name="TemperatureLabel" 
+                           FontSize="48" 
+                           FontAttributes="Bold" 
+                           HorizontalOptions="Center"
+                           TextColor="#E74C3C" />
+
+                    <!-- Additional Weather Info -->
+                    <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,*" RowSpacing="10" ColumnSpacing="20">
+
+                        <Label Grid.Row="0" Grid.Column="0" Text="Feels like:" FontAttributes="Bold" />
+                        <Label Grid.Row="0" Grid.Column="1" x:Name="FeelsLikeLabel" />
+
+                        <Label Grid.Row="1" Grid.Column="0" Text="Humidity:" FontAttributes="Bold" />
+                        <Label Grid.Row="1" Grid.Column="1" x:Name="HumidityLabel" />
+
+                        <Label Grid.Row="2" Grid.Column="0" Text="Wind Speed:" FontAttributes="Bold" />
+                        <Label Grid.Row="2" Grid.Column="1" x:Name="WindSpeedLabel" />
+
+                    </Grid>
+
+                    <!-- Pressure and Visibility -->
+                    <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,*" RowSpacing="10" ColumnSpacing="20">
+
+                        <Label Grid.Row="0" Grid.Column="0" Text="Pressure:" FontAttributes="Bold" />
+                        <Label Grid.Row="0" Grid.Column="1" x:Name="PressureLabel" />
+
+                        <Label Grid.Row="1" Grid.Column="0" Text="Visibility:" FontAttributes="Bold" />
+                        <Label Grid.Row="1" Grid.Column="1" x:Name="VisibilityLabel" />
+
+                    </Grid>
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Loading Indicator -->
+            <ActivityIndicator x:Name="LoadingIndicator" 
+                               IsVisible="False" 
+                               IsRunning="False" 
+                               Color="#4A90E2" />
+
+            <!-- Status Message -->
+            <Label x:Name="StatusLabel" 
+                   FontSize="16" 
+                   HorizontalOptions="Center"
+                   TextColor="#E74C3C" 
+                   IsVisible="False" />
+
+            <!-- Instructions -->
+            <Frame BackgroundColor="#FFF3CD" CornerRadius="8" Padding="15">
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Instructions:" FontAttributes="Bold" TextColor="#856404" />
+                    <Label Text="1. Click 'Get Current Location' to use GPS" TextColor="#856404" />
+                    <Label Text="2. Or enter a city name and click 'Search'" TextColor="#856404" />
+                    <Label Text="3. Make sure to replace 'YOUR_API_KEY_HERE' in WeatherService.cs with your OpenWeather API key" 
+                           TextColor="#856404" 
+                           FontSize="12" />
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
